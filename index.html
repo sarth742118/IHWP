@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healtify - Ayurvedic Dosha Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>Healtify</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+                <a href="#" class="nav-link" onclick="showPage('assessment')">Assessment</a>
+                <a href="#" class="nav-link" onclick="showPage('followups')">Follow-ups</a>
+                <a href="#" class="nav-link" onclick="showPage('feedback')">Feedback</a>
+                <a href="#" class="nav-link" onclick="showPage('about')">About</a>
+                <a href="#" class="nav-link" id="profile-link" onclick="showPage('profile')" style="display: none;">Profile</a>
+                <a href="#" class="nav-link" id="admin-link" onclick="showPage('admin')" style="display: none;">Admin</a>
+                <a href="#" class="nav-link" id="logout-link" onclick="logout()" style="display: none;">Logout</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sign Up Page -->
+    <div id="signup-page" class="page active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-leaf auth-icon"></i>
+                    <h2>Welcome to Healtify</h2>
+                    <p>Discover your Ayurvedic constitution</p>
+                </div>
+                <form id="signup-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign Up</button>
+                </form>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="showPage('login')">Login</a></p>
+                    <p><a href="#" onclick="showAdminLogin()" style="color:#ff6b6b;font-weight:bold;">Admin Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-leaf auth-icon"></i>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to your account</p>
+                </div>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" onclick="showPage('signup')">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Discover Your Ayurvedic Constitution</h1>
+                <p>Take our comprehensive assessment to understand your unique dosha type and receive personalized recommendations for a balanced lifestyle.</p>
+                <button class="cta-btn" onclick="showPage('assessment')">Start Assessment</button>
+                <button class="cta-btn" onclick="quickAdminAccess()" style="margin-left: 10px; background: #ff6b6b;">Admin Access</button>
+            </div>
+            <div class="hero-image">
+                <div class="dosha-icons">
+                    <div class="dosha-icon vata">
+                        <i class="fas fa-wind"></i>
+                        <span>Vata</span>
+                    </div>
+                    <div class="dosha-icon pitta">
+                        <i class="fas fa-fire"></i>
+                        <span>Pitta</span>
+                    </div>
+                    <div class="dosha-icon kapha">
+                        <i class="fas fa-water"></i>
+                        <span>Kapha</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h2>What You'll Discover</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Comprehensive Assessment</h3>
+                    <p>Answer 10 carefully crafted questions to determine your dosha type.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Daily Routine</h3>
+                    <p>Get personalized daily routines that align with your dosha constitution.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>Diet Recommendations</h3>
+                    <p>Receive dietary guidelines tailored to balance your specific dosha.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Lifestyle Tips</h3>
+                    <p>Learn lifestyle practices that promote harmony and well-being.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Page -->
+    <div id="assessment-page" class="page">
+        <div class="assessment-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <div class="question-container" id="question-container">
+                <h2 id="question-text">Loading questions...</h2>
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="assessment-nav">
+                <button class="nav-btn" id="prev-btn" onclick="previousQuestion()" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span class="question-counter" id="question-counter">1 / 10</span>
+                <button class="nav-btn" id="next-btn" onclick="nextQuestion()">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="page">
+        <div class="results-container">
+            <div class="results-header">
+                <h2>Your Dosha Assessment Results</h2>
+                <div class="dosha-result" id="dosha-result">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="results-content">
+                <div class="result-section">
+                    <h3><i class="fas fa-chart-pie"></i> Your Dosha Breakdown</h3>
+                    <div class="dosha-breakdown" id="dosha-breakdown">
+                        <!-- Breakdown will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-sun"></i> Daily Routine</h3>
+                    <div class="routine-content" id="routine-content">
+                        <!-- Routine will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-apple-alt"></i> Diet Recommendations</h3>
+                    <div class="diet-content" id="diet-content">
+                        <!-- Diet recommendations will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-heart"></i> Lifestyle Tips</h3>
+                    <div class="lifestyle-content" id="lifestyle-content">
+                        <!-- Lifestyle tips will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button class="action-btn" onclick="showPage('home')">
+                    <i class="fas fa-home"></i> Back to Home
+                </button>
+                <button class="action-btn" onclick="retakeAssessment()">
+                    <i class="fas fa-redo"></i> Retake Assessment
+                </button>
+                <button class="action-btn" onclick="saveResults()">
+                    <i class="fas fa-download"></i> Save Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page">
+        <div class="about-container">
+            <h2>About Ayurveda and Doshas</h2>
+            <div class="about-content">
+                <div class="about-section">
+                    <h3>What is Ayurveda?</h3>
+                    <p>Ayurveda is an ancient Indian system of medicine that focuses on achieving balance between mind, body, and spirit. It's based on the concept of three fundamental energies or doshas: Vata, Pitta, and Kapha.</p>
+                </div>
+
+                <div class="dosha-info">
+                    <div class="dosha-card vata">
+                        <h3><i class="fas fa-wind"></i> Vata Dosha</h3>
+                        <p>Vata is composed of air and ether elements. It governs movement, creativity, and communication. When balanced, Vata individuals are creative, quick-thinking, and adaptable.</p>
+                        <ul>
+                            <li><strong>Elements:</strong> Air + Ether</li>
+                            <li><strong>Qualities:</strong> Light, dry, cold, mobile</li>
+                            <li><strong>Functions:</strong> Movement, breathing, circulation</li>
+                        </ul>
+                    </div>
+
+                    <div class="dosha-card pitta">
+                        <h3><i class="fas fa-fire"></i> Pitta Dosha</h3>
+                        <p>Pitta is composed of fire and water elements. It governs metabolism, digestion, and transformation. When balanced, Pitta individuals are intelligent, focused, and natural leaders.</p>
+                        <ul>
+                            <li><strong>Elements:</strong> Fire + Water</li>
+                            <li><strong>Qualities:</strong> Hot, sharp, light, oily</li>
+                            <li><strong>Functions:</strong> Digestion, metabolism, intelligence</li>
+                        </ul>
+                    </div>
+
+                    <div class="dosha-card kapha">
+                        <h3><i class="fas fa-water"></i> Kapha Dosha</h3>
+                        <p>Kapha is composed of earth and water elements. It governs structure, stability, and lubrication. When balanced, Kapha individuals are strong, loyal, and patient.</p>
+                        <ul>
+                            <li><strong>Elements:</strong> Earth + Water</li>
+                            <li><strong>Qualities:</strong> Heavy, slow, cool, oily</li>
+                            <li><strong>Functions:</strong> Structure, stability, growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile-page" class="page">
+        <div class="profile-container">
+            <h2>Your Profile</h2>
+            <div class="profile-content">
+                <div class="profile-info">
+                    <h3>Personal Information</h3>
+                    <div class="info-item">
+                        <label>Name:</label>
+                        <span id="profile-name">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email:</label>
+                        <span id="profile-email">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Member Since:</label>
+                        <span id="profile-date">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="action-btn" onclick="showPage('assessment')">
+                        <i class="fas fa-clipboard-list"></i> Take Assessment
+                    </button>
+                    <button class="action-btn" onclick="viewHistory()">
+                        <i class="fas fa-history"></i> View History
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Follow-ups Page -->
+    <div id="followups-page" class="page">
+        <div class="followups-container">
+            <h2>Follow-ups & Progress Tracking</h2>
+            
+            <div class="followups-content">
+                <!-- Progress Overview -->
+                <div class="progress-overview">
+                    <h3><i class="fas fa-chart-line"></i> Your Progress</h3>
+                    <div class="progress-cards">
+                        <div class="progress-card">
+                            <h4>Assessments Taken</h4>
+                            <div class="progress-number" id="assessments-count">0</div>
+                        </div>
+                        <div class="progress-card">
+                            <h4>Days Following Routine</h4>
+                            <div class="progress-number" id="routine-days">0</div>
+                        </div>
+                        <div class="progress-card">
+                            <h4>Goals Achieved</h4>
+                            <div class="progress-number" id="goals-achieved">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Progress Tracking -->
+                <div class="tracking-section">
+                    <h3><i class="fas fa-tasks"></i> Daily Routine Tracking</h3>
+                    <div class="tracking-form">
+                        <div class="tracking-item">
+                            <label>
+                                <input type="checkbox" id="track-routine" onchange="updateProgress('routine')">
+                                Followed daily routine today
+                            </label>
+                        </div>
+                        <div class="tracking-item">
+                            <label>
+                                <input type="checkbox" id="track-diet" onchange="updateProgress('diet')">
+                                Followed diet recommendations
+                            </label>
+                        </div>
+                        <div class="tracking-item">
+                            <label>
+                                <input type="checkbox" id="track-exercise" onchange="updateProgress('exercise')">
+                                Did recommended exercises
+                            </label>
+                        </div>
+                        <div class="tracking-item">
+                            <label>
+                                <input type="checkbox" id="track-meditation" onchange="updateProgress('meditation')">
+                                Practiced meditation
+                            </label>
+                        </div>
+                    </div>
+                    <button class="action-btn" onclick="saveDailyProgress()">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                </div>
+
+                <!-- Goals Section -->
+                <div class="goals-section">
+                    <h3><i class="fas fa-bullseye"></i> Your Goals</h3>
+                    <div class="goals-list" id="goals-list">
+                        <!-- Goals will be populated by JavaScript -->
+                    </div>
+                    <button class="action-btn" onclick="addGoal()">
+                        <i class="fas fa-plus"></i> Add Goal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Page -->
+    <div id="feedback-page" class="page">
+        <div class="feedback-container">
+            <h2>Feedback & Suggestions</h2>
+            
+            <div class="feedback-content">
+                <!-- Feedback Form -->
+                <div class="feedback-form-section">
+                    <h3><i class="fas fa-comment"></i> Share Your Experience</h3>
+                    <form id="feedback-form" class="feedback-form">
+                        <div class="form-group">
+                            <label for="feedback-type">Feedback Type</label>
+                            <select id="feedback-type" required>
+                                <option value="">Select type</option>
+                                <option value="assessment">Assessment Experience</option>
+                                <option value="recommendations">Recommendations</option>
+                                <option value="app-features">App Features</option>
+                                <option value="general">General Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback-rating">Overall Rating</label>
+                            <div class="rating-stars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="feedback-rating" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback-title">Title</label>
+                            <input type="text" id="feedback-title" placeholder="Brief title for your feedback" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback-message">Your Feedback</label>
+                            <textarea id="feedback-message" rows="5" placeholder="Please share your detailed feedback, suggestions, or experience..." required></textarea>
+                        </div>
+                        <button type="submit" class="action-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Feedback
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Previous Feedback -->
+                <div class="feedback-history-section">
+                    <h3><i class="fas fa-history"></i> Your Previous Feedback</h3>
+                    <div class="feedback-history" id="feedback-history">
+                        <!-- Previous feedback will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-page" class="page">
+        <div class="admin-container">
+            <h2>Admin Panel</h2>
+            
+            <div class="admin-content">
+                <!-- Admin Login -->
+                <div id="admin-login-section" class="admin-section">
+                    <h3><i class="fas fa-lock"></i> Admin Authentication</h3>
+                    <form id="admin-login-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="admin-email">Admin Email</label>
+                            <input type="email" id="admin-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">Admin Password</label>
+                            <input type="password" id="admin-password" required>
+                        </div>
+                        <button type="submit" class="action-btn">
+                            <i class="fas fa-sign-in-alt"></i> Login as Admin
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div id="admin-dashboard" class="admin-section" style="display: none;">
+                    <div class="admin-actions" style="display:flex; justify-content:flex-end; margin-bottom: 12px;">
+                        <button class="action-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                    <div class="admin-stats">
+                        <div class="stat-card">
+                            <h4>Total Users</h4>
+                            <div class="stat-number" id="total-users">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Total Assessments</h4>
+                            <div class="stat-number" id="total-assessments">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Active Follow-ups</h4>
+                            <div class="stat-number" id="active-followups">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Feedback Received</h4>
+                            <div class="stat-number" id="total-feedback">0</div>
+                        </div>
+                    </div>
+
+                    <!-- User Management -->
+                    <div class="admin-section">
+                        <h3><i class="fas fa-users"></i> Student Management</h3>
+                        <div class="user-filters">
+                            <input type="text" id="user-search" placeholder="Search students..." onkeyup="filterUsers()">
+                            <select id="user-filter" onchange="filterUsers()">
+                                <option value="">All Students</option>
+                                <option value="active">Active Students</option>
+                                <option value="inactive">Inactive Students</option>
+                                <option value="new">New Students (Last 7 days)</option>
+                            </select>
+                            <button class="btn-small btn-view" onclick="exportStudentData()">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                        </div>
+                        <div class="users-table-container">
+                            <table class="users-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all-users" onchange="toggleAllUsers()"></th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Join Date</th>
+                                        <th>Assessments</th>
+                                        <th>Last Active</th>
+                                        <th>Progress Score</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-table-body">
+                                    <!-- Users will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bulk-actions" id="bulk-actions" style="display: none;">
+                            <button class="btn-small btn-delete" onclick="bulkDeleteUsers()">
+                                <i class="fas fa-trash"></i> Delete Selected
+                            </button>
+                            <button class="btn-small btn-edit" onclick="bulkExportUsers()">
+                                <i class="fas fa-download"></i> Export Selected
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Student Analytics -->
+                    <div class="admin-section">
+                        <h3><i class="fas fa-chart-bar"></i> Student Analytics</h3>
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <h4>Assessment Completion Rate</h4>
+                                <div class="analytics-number" id="completion-rate">0%</div>
+                                <div class="analytics-chart" id="completion-chart"></div>
+                            </div>
+                            <div class="analytics-card">
+                                <h4>Average Progress Score</h4>
+                                <div class="analytics-number" id="avg-progress">0</div>
+                                <div class="analytics-chart" id="progress-chart"></div>
+                            </div>
+                            <div class="analytics-card">
+                                <h4>Most Common Dosha</h4>
+                                <div class="analytics-number" id="common-dosha">-</div>
+                                <div class="analytics-chart" id="dosha-chart"></div>
+                            </div>
+                            <div class="analytics-card">
+                                <h4>Active Engagement</h4>
+                                <div class="analytics-number" id="active-engagement">0%</div>
+                                <div class="analytics-chart" id="engagement-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Feedback Management -->
+                    <div class="admin-section">
+                        <h3><i class="fas fa-comments"></i> Feedback Management</h3>
+                        <div class="feedback-filters">
+                            <select id="feedback-type-filter" onchange="filterFeedback()">
+                                <option value="">All Feedback</option>
+                                <option value="assessment">Assessment</option>
+                                <option value="recommendations">Recommendations</option>
+                                <option value="app-features">App Features</option>
+                                <option value="general">General</option>
+                            </select>
+                        </div>
+                        <div class="feedback-table-container">
+                            <table class="feedback-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Type</th>
+                                        <th>Rating</th>
+                                        <th>Title</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="feedback-table-body">
+                                    <!-- Feedback will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
